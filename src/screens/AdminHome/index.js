@@ -10,41 +10,41 @@ import {
 import { useStyles } from './styles';
 
 
-const AdminHome = () => {
+const AdminHome = ({navigation}) => {
     const styles = useStyles()
     return (
         <ScrollView>
             <View style={styles.container}>
                 <View style={styles.innerContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('PostNotification')}}>
                         <Text style={styles.text}>Post Notification</Text>
                     </TouchableOpacity>
                     <View style={styles.hr}></View>
                 </View>
 
                 <View style={styles.innerContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('PostTimeTable')}}>
                         <Text style={styles.text}>Post Time Table</Text>
                     </TouchableOpacity>
                     <View style={styles.hr}></View>
                 </View>
 
                 <View style={styles.innerContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('PostDateSheet')}}>
                         <Text style={styles.text}>Post DateSheet</Text>
                     </TouchableOpacity>
                     <View style={styles.hr}></View>
                 </View>
 
                 <View style={styles.innerContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('CreateTeacherProfile')}}>
                         <Text style={styles.text}>Create Teacher's Profile</Text>
                     </TouchableOpacity>
                     <View style={styles.hr}></View>
                 </View>
 
                 <View style={styles.innerContainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('Complaints')}}>
                         <Text style={styles.text}>View Complaints</Text>
                     </TouchableOpacity>
                     <View style={styles.hr}></View>

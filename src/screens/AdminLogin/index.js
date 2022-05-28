@@ -14,7 +14,7 @@ import {
 import { Button, TextInput } from 'react-native-paper';
 import { useStyles } from './styles';
 
-const Login = () => {
+const Login = ({navigation}) => {
     const styles = useStyles()
     return (
         <ScrollView>
@@ -31,7 +31,7 @@ const Login = () => {
                     mode='outlined'
                 />
 
-                <Button style={styles.btn} mode="contained" onPress={() => console.log('Pressed')}>
+                <Button style={styles.btn} mode="contained" onPress={() => navigation.navigate('AdminHome')}>
                     Login
                 </Button>
             </View>
