@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
     SafeAreaView,
@@ -14,25 +14,32 @@ import {
 import { Button, TextInput } from 'react-native-paper';
 import { useStyles } from './styles';
 
-const Login = () => {
+const CreateTeacherProfile = () => {
     const styles = useStyles()
+
+
+
     return (
         <ScrollView>
-
             <View style={styles.container}>
-                <Image style={styles.img} source={require('../../assets/logo.png')} />
                 <TextInput
-                    label="Email"
+                    label="Name"
                     mode='outlined'
                 />
-
                 <TextInput
-                    label="Password"
+                    label="Designation"
                     mode='outlined'
                 />
-
+                <TextInput
+                    label="Qualification"
+                    mode='outlined'
+                />
+                <TextInput
+                    label="Email Address"
+                    mode='outlined'
+                />
                 <Button style={styles.btn} mode="contained" onPress={() => console.log('Pressed')}>
-                    Login
+                    Post
                 </Button>
             </View>
         </ScrollView>
@@ -41,4 +48,4 @@ const Login = () => {
 
 
 
-export default Login;
+export default CreateTeacherProfile;

@@ -15,21 +15,9 @@ export const useStyles = () => {
         
         btn:{
             padding:10,
-            marginTop:30
+            marginTop:20,
+            marginBottom:20
         },
-        hr:{
-            marginBottom:5,
-            marginTop:5,
-            height:1,
-            backgroundColor:'gray'
-        },
-        text:{
-            fontSize:20,
-            fontWeight:'bold'
-        },
-        innerContainer:{
-            marginBottom:10
-        }
         
         
         

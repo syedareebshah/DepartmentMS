@@ -11,6 +11,10 @@ import {
 import { Provider as PaperProvider,TextInput } from 'react-native-paper';
 import AdminHome from './src/screens/AdminHome';
 import Login from './src/screens/AdminLogin';
+import CreateTeacherProfile from './src/screens/CreateTeacherProfile';
+import PostDateSheet from './src/screens/PostDateSheet';
+import PostNotification from './src/screens/PostNotification';
+import PostTimeTable from './src/screens/PostTimeTable';
 import Welcome from './src/screens/WelcomeScreen';
 
 const App = () => {
@@ -18,7 +22,7 @@ const App = () => {
 
   return (
     <PaperProvider>
-      <AdminHome />
+      <CreateTeacherProfile />
     </PaperProvider>
 
   );

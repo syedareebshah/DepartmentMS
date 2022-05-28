@@ -1,38 +1,54 @@
 import React from 'react';
 
 import {
-    SafeAreaView,
     ScrollView,
-    StatusBar,
-    StyleSheet,
     Text,
-    useColorScheme,
-    Image,
     View,
+    TouchableOpacity
 
 } from 'react-native';
-import { Button, TextInput } from 'react-native-paper';
 import { useStyles } from './styles';
+
 
 const AdminHome = () => {
     const styles = useStyles()
     return (
         <ScrollView>
-
             <View style={styles.container}>
-                <TextInput
-                    label="Email"
-                    mode='outlined'
-                />
+                <View style={styles.innerContainer}>
+                    <TouchableOpacity>
+                        <Text style={styles.text}>Post Notification</Text>
+                    </TouchableOpacity>
+                    <View style={styles.hr}></View>
+                </View>
 
-                <TextInput
-                    label="Password"
-                    mode='outlined'
-                />
+                <View style={styles.innerContainer}>
+                    <TouchableOpacity>
+                        <Text style={styles.text}>Post Time Table</Text>
+                    </TouchableOpacity>
+                    <View style={styles.hr}></View>
+                </View>
 
-                <Button style={styles.btn} mode="contained" onPress={() => console.log('Pressed')}>
-                    Login
-                </Button>
+                <View style={styles.innerContainer}>
+                    <TouchableOpacity>
+                        <Text style={styles.text}>Post DateSheet</Text>
+                    </TouchableOpacity>
+                    <View style={styles.hr}></View>
+                </View>
+
+                <View style={styles.innerContainer}>
+                    <TouchableOpacity>
+                        <Text style={styles.text}>Create Teacher's Profile</Text>
+                    </TouchableOpacity>
+                    <View style={styles.hr}></View>
+                </View>
+
+                <View style={styles.innerContainer}>
+                    <TouchableOpacity>
+                        <Text style={styles.text}>View Complaints</Text>
+                    </TouchableOpacity>
+                    <View style={styles.hr}></View>
+                </View>
             </View>
         </ScrollView>
     );

@@ -11,8 +11,7 @@ export const useStyles = () => {
             marginTop:50,
             paddingLeft:30,
             paddingRight:30,
-        },
-        
+        }, 
         btn:{
             padding:10,
             marginTop:30
@@ -27,12 +26,11 @@ export const useStyles = () => {
             fontSize:20,
             fontWeight:'bold'
         },
-        innerContainer:{
-            marginBottom:10
+        textarea:{
+            marginTop:7,
+            marginBottom:7
         }
-        
-        
-        
+            
     })
     return styles;
 }
