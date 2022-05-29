@@ -8,6 +8,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import { Provider as PaperProvider, TextInput } from 'react-native-paper';
 import StackNav from './src/Navigation/StackNav';
 import AdminHome from './src/screens/AdminHome';
@@ -24,11 +25,16 @@ import NotificationDetails from './src/screens/NotificationDetails';
 import DateSheet from './src/screens/DateSheet';
 import TimeTable from './src/screens/TimeTable';
 import TeacherProfile from './src/screens/TeacherProfile';
+import TabNav from './src/Navigation/TabNav';
+import ComplaintDetails from './src/screens/ComplaintDetails';
+import TeachersList from './src/screens/TeachersList';
 
 const App = () => {
   return (
     <PaperProvider>
-      <StackNav />
+      <NavigationContainer>
+        <StackNav />
+      </NavigationContainer>
     </PaperProvider>
   );
 };

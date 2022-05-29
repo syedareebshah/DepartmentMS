@@ -9,24 +9,24 @@ import {
     useColorScheme,
     Image,
     View,
+    TouchableOpacity
 
 } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useStyles } from './styles';
 
-const ViewComplaints = () => {
+const ViewComplaints = ({ navigation }) => {
     const styles = useStyles()
 
 
     return (
         <ScrollView>
             <View style={styles.container}>
-                <View style={styles.listItem}>
-                    <Text style={styles.text}>Title</Text>
-                </View>
-                <View style={styles.listItem}>
-                    <Text style={styles.text}>Title</Text>
-                </View>
+                <TouchableOpacity onPress={()=>{navigation.navigate('ComplaintDetails')}}>
+                    <View style={styles.listItem}>
+                        <Text style={styles.text}>Title</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     );

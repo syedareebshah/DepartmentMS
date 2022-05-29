@@ -38,10 +38,7 @@ export const useStyles = () => {
         text: {
             width: '80%',
         },
-        table: {
-            backgroundColor: 'white',
-
-        }
+        
 
 
 

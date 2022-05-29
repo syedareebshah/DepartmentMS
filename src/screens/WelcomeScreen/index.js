@@ -19,7 +19,7 @@ const Welcome = ({navigation}) => {
         <ScrollView>
             <View style={styles.container}>
                     <Image style={styles.img} source={require('../../assets/logo.png')} />
-                    <Button style={styles.btn} mode="contained" onPress={() => navigation.navigate('Login')}>
+                    <Button style={styles.btn} mode="contained" onPress={() => navigation.navigate('TabNav')}>
                         Continue as student
                     </Button>
                     <Button style={styles.btn} mode="contained" onPress={() => navigation.navigate('Login')}>

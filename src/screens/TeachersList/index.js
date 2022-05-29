@@ -12,21 +12,23 @@ import {
     TouchableOpacity
 
 } from 'react-native';
-import { Button, TextInput } from 'react-native-paper';
+import { Button, TextInput, } from 'react-native-paper';
 import { useStyles } from './styles';
 
-const Notifications = ({navigation}) => {
+const TeachersList = ({navigation}) => {
     const styles = useStyles()
 
     return (
         <ScrollView>
             <View style={styles.container}>
                 <View style={styles.listItem}>
-                    <TouchableOpacity onPress={()=>{navigation.navigate('NotificationDetails')}}>
-                        <Text style={styles.text}>Notification</Text>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('TeacherProfile')}}>
+                    <Text style={styles.text}>Teacher Name</Text>
                     </TouchableOpacity>
                 </View>
-                
+                <View style={styles.listItem}>
+                    <Text style={styles.text}>Teacher Name</Text>
+                </View>
             </View>
         </ScrollView>
     );
@@ -34,4 +36,4 @@ const Notifications = ({navigation}) => {
 
 
 
-export default Notifications;
+export default TeachersList;

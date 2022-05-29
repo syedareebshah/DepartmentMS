@@ -22,7 +22,8 @@ export const useStyles = () => {
         text: {
             fontSize: 20,
             color: 'blue',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+
         },
         listItem: {
             backgroundColor: 'white',
@@ -39,10 +40,6 @@ export const useStyles = () => {
 
             elevation: 6,
         }
-
-
-
-
     })
     return styles;
 }
