@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useForm, Controller } from "react-hook-form";
 
 import {
     SafeAreaView,
@@ -9,7 +10,6 @@ import {
     useColorScheme,
     Image,
     View,
-
 } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useStyles } from './styles';
@@ -17,8 +17,23 @@ import { useStyles } from './styles';
 const PostDateSheet = () => {
     const styles = useStyles()
     const [add, setAdd] = useState(false)
-
     console.log(add);
+
+    const { control, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            date: '',
+            subject: '',
+            time: '',
+            class: '',
+            vanue: '',
+            remarks: ''
+        }
+    });
+    const onSubmit = (data) => {
+        console.log(data)
+        setAdd(false)
+        }
+
 
 
     return (
@@ -28,31 +43,118 @@ const PostDateSheet = () => {
 
                 {add &&
                     <View>
-                        <TextInput
-                            label="Date"
-                            mode='outlined'
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({ field: { onChange, onBlur, value } }) => (
+                                <TextInput
+                                    label="Date"
+                                    mode='outlined'
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                />
+                            )}
+                            name="date"
                         />
-                        <TextInput
-                            label="Subject"
-                            mode='outlined'
+                        {errors.date && <Text>This is required.</Text>}
+
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({ field: { onChange, onBlur, value } }) => (
+                                <TextInput
+                                    label="Subject"
+                                    mode='outlined'
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                />
+                            )}
+                            name="subject"
                         />
-                        <TextInput
-                            label="Time"
-                            mode='outlined'
+                        {errors.subject && <Text>This is required.</Text>}
+
+
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({ field: { onChange, onBlur, value } }) => (
+                                <TextInput
+                                    label="Time"
+                                    mode='outlined'
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                />
+                            )}
+                            name="time"
                         />
-                        <TextInput
-                            label="Section/Semester"
-                            mode='outlined'
+                        {errors.time && <Text>This is required.</Text>}
+
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({ field: { onChange, onBlur, value } }) => (
+                                <TextInput
+                                    label="Section/Semester"
+                                    mode='outlined'
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                />
+                            )}
+                            name="class"
                         />
-                        <TextInput
-                            label="Vanue"
-                            mode='outlined'
+                        {errors.class && <Text>This is required.</Text>}
+
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({ field: { onChange, onBlur, value } }) => (
+                                <TextInput
+                                    label="Vanue"
+                                    mode='outlined'
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                />
+                            )}
+                            name="vanue"
                         />
-                        <TextInput
-                            label="Remarks"
-                            mode='outlined'
+                        {errors.vanue && <Text>This is required.</Text>}
+
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({ field: { onChange, onBlur, value } }) => (
+                                <TextInput
+                                    label="Remarks"
+                                    mode='outlined'
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                />
+                            )}
+                            name="remarks"
                         />
-                        <Button  onPress={() => setAdd(false)}>
+                        {errors.remarks && <Text>This is required.</Text>}
+
+
+                        
+                        <Button onPress={handleSubmit(onSubmit)}>
                             Submit
                         </Button>
 

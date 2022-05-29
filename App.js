@@ -28,6 +28,7 @@ import TeacherProfile from './src/screens/TeacherProfile';
 import TabNav from './src/Navigation/TabNav';
 import ComplaintDetails from './src/screens/ComplaintDetails';
 import TeachersList from './src/screens/TeachersList';
+import Prac from './src/Prac';
 
 const App = () => {
   return (

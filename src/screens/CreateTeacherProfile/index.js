@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useForm, Controller } from "react-hook-form";
 
 import {
     SafeAreaView,
@@ -16,29 +17,95 @@ import { useStyles } from './styles';
 
 const CreateTeacherProfile = () => {
     const styles = useStyles()
+    const { control, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            name: '',
+            post: '',
+            qualification: '',
+            email: ''
+        }
+    });
+    const onSubmit = data => console.log(data);
 
 
 
     return (
         <ScrollView>
             <View style={styles.container}>
-                <TextInput
-                    label="Name"
-                    mode='outlined'
+                <Controller
+                    control={control}
+                    rules={{
+                        required: true,
+                    }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <TextInput
+                            label="Name"
+                            mode='outlined'
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                        />
+                    )}
+                    name="name"
                 />
-                <TextInput
-                    label="Designation"
-                    mode='outlined'
+                {errors.name && <Text>This is required.</Text>}
+
+                <Controller
+                    control={control}
+                    rules={{
+                        required: true,
+                    }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <TextInput
+                            label="Designation"
+                            mode='outlined'
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                        />
+                    )}
+                    name="post"
                 />
-                <TextInput
-                    label="Qualification"
-                    mode='outlined'
+                {errors.post && <Text>This is required.</Text>}
+
+                <Controller
+                    control={control}
+                    rules={{
+                        required: true,
+                    }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <TextInput
+                            label="Qualification"
+                            mode='outlined'
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                        />
+                    )}
+                    name="qualification"
                 />
-                <TextInput
-                    label="Email Address"
-                    mode='outlined'
+                {errors.qualification && <Text>This is required.</Text>}
+
+                <Controller
+                    control={control}
+                    rules={{
+                        required: true,
+                    }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <TextInput
+                            label="Email"
+                            mode='outlined'
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                        />
+                    )}
+                    name="email"
                 />
-                <Button style={styles.btn} mode="contained" onPress={() => console.log('Pressed')}>
+                {errors.email && <Text>This is required.</Text>}
+
+
+                <Button style={styles.btn} mode="contained" onPress={handleSubmit(onSubmit)}>
                     Post
                 </Button>
             </View>

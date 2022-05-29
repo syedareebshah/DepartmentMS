@@ -1,4 +1,5 @@
 import React from 'react';
+import { useForm, Controller } from "react-hook-form";
 
 import {
     ScrollView,
@@ -13,24 +14,78 @@ import { TextInput, Button } from 'react-native-paper'
 
 const Complaint = ({ navigation }) => {
     const styles = useStyles()
+    const { control, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            title: '',
+            subject: '',
+            name: ''
+        }
+    });
+    const onSubmit = data => console.log(data);
+
     return (
         <ScrollView>
             <View style={styles.container}>
-                <TextInput
-                    label="Title"
-                    mode='outlined'
+
+                <Controller
+                    control={control}
+                    rules={{
+                        required: true,
+                    }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <TextInput
+                            label="Title"
+                            mode='outlined'
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                        />
+                    )}
+                    name="title"
                 />
-                <TextInput
-                    label="Subject..."
-                    mode='outlined'
-                    multiline={true}
-                    numberOfLines={15}
+                {errors.title && <Text>This is required.</Text>}
+
+                <Controller
+                    control={control}
+                    rules={{
+                        required: true,
+                    }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <TextInput
+                            label="Subject..."
+                            mode='outlined'
+                            multiline={true}
+                            numberOfLines={15}
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                        />
+                    )}
+                    name="subject"
                 />
-                <TextInput
-                    label="Your Name"
-                    mode='outlined'
+                {errors.subject && <Text>This is required.</Text>}
+
+                <Controller
+                    control={control}
+                    rules={{
+                        required: true,
+                    }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <TextInput
+                            label="Your Name..."
+                            mode='outlined'
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                        />
+                    )}
+                    name="name"
                 />
-                <Button style={styles.btn} mode="contained" onPress={() => navigation.navigate('AdminHome')}>
+                {errors.name && <Text>This is required.</Text>}
+
+
+
+                <Button style={styles.btn} mode="contained" onPress={handleSubmit(onSubmit)}>
                     Submit
                 </Button>
             </View>

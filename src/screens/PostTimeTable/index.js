@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
+import { useForm, Controller } from "react-hook-form";
 
 import {
-    SafeAreaView,
     ScrollView,
-    StatusBar,
-    StyleSheet,
     Text,
-    useColorScheme,
-    Image,
     View,
 
 } from 'react-native';
@@ -17,8 +13,22 @@ import { useStyles } from './styles';
 const PostTimeTable = () => {
     const styles = useStyles()
     const [add, setAdd] = useState(false)
-
     console.log(add);
+
+    const { control, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            day: '',
+            time: '',
+            roomFloor: '',
+            subject: '',
+            teacher: ''
+        }
+    });
+    const onSubmit = (data) => {
+        console.log(data);
+        setAdd(false)
+    }
+
 
 
     return (
@@ -28,28 +38,101 @@ const PostTimeTable = () => {
 
                 {add &&
                     <View>
-                        <TextInput
-                            label="Day"
-                            mode='outlined'
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({ field: { onChange, onBlur, value } }) => (
+                                <TextInput
+                                    label="Day"
+                                    mode='outlined'
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                />
+                            )}
+                            name="day"
                         />
-                        <TextInput
-                            label="Time"
-                            mode='outlined'
+                        {errors.day && <Text>This is required.</Text>}
+
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({ field: { onChange, onBlur, value } }) => (
+                                <TextInput
+                                    label="Time"
+                                    mode='outlined'
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                />
+                            )}
+                            name="time"
                         />
-                        <TextInput
-                            label="Room/Floor"
-                            mode='outlined'
+                        {errors.time && <Text>This is required.</Text>}
+
+
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({ field: { onChange, onBlur, value } }) => (
+                                <TextInput
+                                    label="Room/Floor"
+                                    mode='outlined'
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                />
+                            )}
+                            name="roomFloor"
                         />
-                        <TextInput
-                            label="Subject"
-                            mode='outlined'
+                        {errors.roomFloor && <Text>This is required.</Text>}
+
+
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({ field: { onChange, onBlur, value } }) => (
+                                <TextInput
+                                    label="Subject"
+                                    mode='outlined'
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                />
+                            )}
+                            name="subject"
                         />
-                        <TextInput
-                            label="Teacher"
-                            mode='outlined'
+                        {errors.subject && <Text>This is required.</Text>}
+
+
+                        <Controller
+                            control={control}
+                            rules={{
+                                required: true,
+                            }}
+                            render={({ field: { onChange, onBlur, value } }) => (
+                                <TextInput
+                                    label="Teacher"
+                                    mode='outlined'
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                />
+                            )}
+                            name="teacher"
                         />
-                        
-                        <Button  onPress={() => setAdd(false)}>
+                        {errors.teacher && <Text>This is required.</Text>}
+
+
+                        <Button onPress={handleSubmit(onSubmit)}>
                             Submit
                         </Button>
 
@@ -57,12 +140,12 @@ const PostTimeTable = () => {
                 }
 
 
-                <Button style={styles.btn} mode="contained" onPress={() => setAdd(true)}>
-                    Add New 
+                <Button style={styles.btn} mode="contained" onPress={()=>{setAdd(true)}}>
+                    Add New
                 </Button>
 
                 <View style={styles.table}>
-                        <Text style={styles.day}>Monday</Text>
+                    <Text style={styles.day}>Monday</Text>
                     <View style={styles.row}>
                         <View style={styles.subRow}>
                             <Text style={styles.heading}>Time</Text>
@@ -81,8 +164,8 @@ const PostTimeTable = () => {
                             <Text style={styles.text}>Sir Kareem</Text>
                         </View>
 
-                        
-                        
+
+
 
                     </View>
 
