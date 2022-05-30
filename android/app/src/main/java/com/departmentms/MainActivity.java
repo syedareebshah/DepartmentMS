@@ -1,10 +1,18 @@
 package com.departmentms;
-
+import android.os.Bundle; // here
+import org.devio.rn.splashscreen.SplashScreen; // here
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 
 public class MainActivity extends ReactActivity {
+
+
+    protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.show(this);  // here
+        super.onCreate(savedInstanceState);
+    }
+    // ...other code
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule

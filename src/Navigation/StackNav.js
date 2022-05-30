@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Welcome from '../screens/WelcomeScreen';
 import Login from '../screens/AdminLogin';
@@ -15,12 +15,19 @@ import TimeTable from '../screens/TimeTable';
 import TeacherProfile from '../screens/TeacherProfile';
 import TabNav from './TabNav';
 import ComplaintDetails from '../screens/ComplaintDetails';
+import SplashScreen from 'react-native-splash-screen'
 
 const Stack = createNativeStackNavigator();
 
 function StackNav() {
+
+    useEffect(() => {
+        SplashScreen.hide();
+    },[])
+
     return (
         <Stack.Navigator>
+
             <Stack.Screen name="Dept. Management System" component={Welcome}
                 options={{
                     headerStyle: {
