@@ -43,7 +43,7 @@ const Notifications = ({ navigation }) => {
                 {notification.map((obj, i) => {
                     return (
                         <View key={i} style={styles.listItem}>
-                            <TouchableOpacity onPress={() => { navigation.navigate('NotificationDetails') }}>
+                            <TouchableOpacity onPress={() => { navigation.navigate('NotificationDetails', {itemId:obj.uId })}}>
                                 <Text style={styles.text}>{obj.title}</Text>
                             </TouchableOpacity>
                         </View>

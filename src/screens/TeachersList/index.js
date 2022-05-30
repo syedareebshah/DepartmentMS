@@ -47,7 +47,7 @@ const TeachersList = ({ navigation }) => {
                     teacher.map((obj, i) => {
                         return (
                             <View key={i} style={styles.listItem}>
-                                <TouchableOpacity onPress={() => { navigation.navigate('TeacherProfile') }}>
+                                <TouchableOpacity onPress={() => { navigation.navigate('TeacherProfile',{itemId:obj.uId}) }}>
                                     <Text style={styles.text}>{obj.name}</Text>
                                 </TouchableOpacity>
                             </View>

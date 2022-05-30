@@ -26,6 +26,8 @@ const CreateTeacherProfile = () => {
             email: ''
         }
     });
+    const uId = new Date().getTime().toString()
+    console.log(uId);
     const onSubmit = ({name, post, qualification,email}) =>
     {
         firestore()
@@ -34,7 +36,8 @@ const CreateTeacherProfile = () => {
                 name,
                 post,
                 qualification,
-                email
+                email,
+                uId
             })
             .then(() => {
                 alert("Profile Created")

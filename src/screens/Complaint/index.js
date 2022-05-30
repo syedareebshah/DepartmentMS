@@ -22,13 +22,18 @@ const Complaint = ({ navigation }) => {
             name: ''
         }
     });
+    
+    const uId = new Date().getTime().toString()
+    console.log(uId);
+
     const onSubmit = ({title,subject,name}) => {
         firestore()
             .collection('Complaints')
             .add({
                 name,
                 title,
-                subject
+                subject,
+                uId
             })
             .then(() => {
                 alert("Complaint Submitted")

@@ -24,6 +24,8 @@ const PostTimeTable = () => {
             teacher: ''
         }
     });
+    const uId = new Date().getTime().toString()
+    console.log(uId);
     const onSubmit = ({ day, time, roomFloor, subject, teacher }) => {
         firestore()
             .collection('TimeTable')
@@ -32,7 +34,8 @@ const PostTimeTable = () => {
                 time,
                 roomFloor,
                 subject,
-                teacher
+                teacher,
+                uId
             })
             .then(() => {
                 alert("Time Table Posted")

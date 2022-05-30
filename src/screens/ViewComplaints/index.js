@@ -31,11 +31,14 @@ const ViewComplaints = ({ navigation }) => {
             .collection('Complaints')
             .get()
             .then(querySnapshot => {
+                console.log(querySnapshot);
                 querySnapshot.forEach(documentSnapshot => {
+                    console.log(documentSnapshot);
                     tempArray.push(documentSnapshot.data())
                 });
                 setComplaints(tempArray)
             });
+       
     }
 
 
@@ -46,7 +49,7 @@ const ViewComplaints = ({ navigation }) => {
                 {
                     complaints.map((obj,i) => {
                         return (
-                            <TouchableOpacity key={i} onPress={() => { navigation.navigate('ComplaintDetails') }}>
+                            <TouchableOpacity key={i} onPress={() => { navigation.navigate('ComplaintDetails',{itemId:obj.uId}) }}>
                                 <View style={styles.listItem}>
                                     <Text style={styles.text}>{obj.title}</Text>
                                 </View>

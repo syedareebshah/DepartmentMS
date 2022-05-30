@@ -21,13 +21,16 @@ const PostNotification = () => {
             regards: ''
         }
     });
+    const uId = new Date().getTime().toString()
+    console.log(uId);
     const onSubmit = ({ title, subject, regards }) => {
         firestore()
             .collection('Notifications')
             .add({
                 title,
                 subject,
-                regards
+                regards,
+                uId
             })
             .then(() => {
                 console.log('User added!');

@@ -30,6 +30,8 @@ const PostDateSheet = () => {
             remarks: ''
         }
     });
+    const uId = new Date().getTime().toString()
+    console.log(uId);
     const onSubmit = ({date, subject ,time, vanue, remarks, classs}) => {
         firestore()
             .collection('DateSheet')
@@ -39,7 +41,8 @@ const PostDateSheet = () => {
                 subject,
                 vanue,
                 remarks,
-                classs
+                classs,
+                uId
             })
             .then(() => {
                 alert("Date Sheet Posted")
