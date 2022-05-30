@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from "react-hook-form";
+import firestore from '@react-native-firebase/firestore';
 
 import {
     SafeAreaView,
@@ -25,8 +26,21 @@ const CreateTeacherProfile = () => {
             email: ''
         }
     });
-    const onSubmit = data => console.log(data);
+    const onSubmit = ({name, post, qualification,email}) =>
+    {
+        firestore()
+            .collection('TeacherProfiles')
+            .add({
+                name,
+                post,
+                qualification,
+                email
+            })
+            .then(() => {
+                alert("Profile Created")
+            });
 
+    }
 
 
     return (

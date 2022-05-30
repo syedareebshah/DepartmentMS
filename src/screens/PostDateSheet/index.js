@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from "react-hook-form";
+import firestore from '@react-native-firebase/firestore';
 
 import {
     SafeAreaView,
@@ -24,14 +25,26 @@ const PostDateSheet = () => {
             date: '',
             subject: '',
             time: '',
-            class: '',
+            classs: '',
             vanue: '',
             remarks: ''
         }
     });
-    const onSubmit = (data) => {
-        console.log(data)
-        setAdd(false)
+    const onSubmit = ({date, subject ,time, vanue, remarks, classs}) => {
+        firestore()
+            .collection('DateSheet')
+            .add({
+                date,
+                time,
+                subject,
+                vanue,
+                remarks,
+                classs
+            })
+            .then(() => {
+                alert("Date Sheet Posted")
+                setAdd(false)
+            });
         }
 
 
@@ -112,9 +125,9 @@ const PostDateSheet = () => {
                                     value={value}
                                 />
                             )}
-                            name="class"
+                            name="classs"
                         />
-                        {errors.class && <Text>This is required.</Text>}
+                        {errors.classs && <Text>This is required.</Text>}
 
                         <Controller
                             control={control}

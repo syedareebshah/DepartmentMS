@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm, Controller } from "react-hook-form";
+import firestore from '@react-native-firebase/firestore';
 
 import {
     ScrollView,
@@ -21,7 +22,18 @@ const Complaint = ({ navigation }) => {
             name: ''
         }
     });
-    const onSubmit = data => console.log(data);
+    const onSubmit = ({title,subject,name}) => {
+        firestore()
+            .collection('Complaints')
+            .add({
+                name,
+                title,
+                subject
+            })
+            .then(() => {
+                alert("Complaint Submitted")
+            });
+    }
 
     return (
         <ScrollView>
@@ -52,7 +64,7 @@ const Complaint = ({ navigation }) => {
                     }}
                     render={({ field: { onChange, onBlur, value } }) => (
                         <TextInput
-                            label="Subject..."
+                            label="Subject"
                             mode='outlined'
                             multiline={true}
                             numberOfLines={15}
@@ -72,7 +84,7 @@ const Complaint = ({ navigation }) => {
                     }}
                     render={({ field: { onChange, onBlur, value } }) => (
                         <TextInput
-                            label="Your Name..."
+                            label="Your Name and AG"
                             mode='outlined'
                             onBlur={onBlur}
                             onChangeText={onChange}

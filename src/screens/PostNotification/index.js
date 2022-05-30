@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, Controller } from "react-hook-form";
-
+import firestore from '@react-native-firebase/firestore';
 import {
     ScrollView,
     Text,
@@ -21,7 +21,19 @@ const PostNotification = () => {
             regards: ''
         }
     });
-    const onSubmit = data => console.log(data);
+    const onSubmit = ({ title, subject, regards }) => {
+        firestore()
+            .collection('Notifications')
+            .add({
+                title,
+                subject,
+                regards
+            })
+            .then(() => {
+                console.log('User added!');
+                alert("Notification Posted")
+            });
+    }
 
     return (
         <ScrollView>

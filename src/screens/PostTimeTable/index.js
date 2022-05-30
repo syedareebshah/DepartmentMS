@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from "react-hook-form";
-
+import firestore from '@react-native-firebase/firestore';
 import {
     ScrollView,
     Text,
@@ -24,9 +24,21 @@ const PostTimeTable = () => {
             teacher: ''
         }
     });
-    const onSubmit = (data) => {
-        console.log(data);
-        setAdd(false)
+    const onSubmit = ({ day, time, roomFloor, subject, teacher }) => {
+        firestore()
+            .collection('TimeTable')
+            .add({
+                day,
+                time,
+                roomFloor,
+                subject,
+                teacher
+            })
+            .then(() => {
+                alert("Time Table Posted")
+                setAdd(false)
+            });
+
     }
 
 
@@ -140,7 +152,7 @@ const PostTimeTable = () => {
                 }
 
 
-                <Button style={styles.btn} mode="contained" onPress={()=>{setAdd(true)}}>
+                <Button style={styles.btn} mode="contained" onPress={() => { setAdd(true) }}>
                     Add New
                 </Button>
 
