@@ -11,10 +11,13 @@ import {
 } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useStyles } from './styles';
+import {useDispatch} from 'react-redux'
+import { loginFlag } from '../../redux/loginSlice';
 
 
 const Login = ({ navigation }) => {
     const styles = useStyles()
+    const dispatch = useDispatch()
     const { control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             email: '',
@@ -23,6 +26,7 @@ const Login = ({ navigation }) => {
     });
     const onSubmit = ({email, password})=> {
         if (email == 'admin@mail.com' && password == '123'){
+            dispatch(loginFlag(true))
             navigation.navigate('AdminHome')
         }
         else{

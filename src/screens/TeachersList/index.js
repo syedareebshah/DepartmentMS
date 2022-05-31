@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import firestore from '@react-native-firebase/firestore';
+import { loginFlag } from '../../redux/loginSlice'
+import { useDispatch, useSelector } from 'react-redux'
+
 
 import {
     SafeAreaView,
@@ -20,6 +23,8 @@ const TeachersList = ({ navigation }) => {
     const styles = useStyles()
     const [teacher, setTeacher] = useState([])
     console.log(teacher);
+    const flag = useSelector(payload => payload.login.isLoggedIn)
+
 
     useEffect(() => {
         getTeachers()
@@ -47,9 +52,17 @@ const TeachersList = ({ navigation }) => {
                     teacher.map((obj, i) => {
                         return (
                             <View key={i} style={styles.listItem}>
-                                <TouchableOpacity onPress={() => { navigation.navigate('TeacherProfile',{itemId:obj.uId}) }}>
+                                <TouchableOpacity onPress={() => { navigation.navigate('TeacherProfile', { itemId: obj.uId }) }}>
                                     <Text style={styles.text}>{obj.name}</Text>
                                 </TouchableOpacity>
+                                {
+                                    flag ?
+                                        <TouchableOpacity>
+                                            <Text>Delete</Text>
+                                        </TouchableOpacity>
+                                        :
+                                        null
+                                }
                             </View>
                         )
                     })

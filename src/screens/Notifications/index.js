@@ -8,6 +8,7 @@ import {
     Text,
     useColorScheme,
     Image,
+    ActivityIndicator,
     View,
     TouchableOpacity
 
@@ -15,10 +16,15 @@ import {
 import { Button, TextInput } from 'react-native-paper';
 import { useStyles } from './styles';
 import firestore from '@react-native-firebase/firestore';
+import { loginFlag } from '../../redux/loginSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Notifications = ({ navigation }) => {
     const styles = useStyles()
     const [notification, setNotifications] = useState([])
+
+    const flag = useSelector(payload => payload.login.isLoggedIn)
+    console.log(flag);
 
     useEffect(() => {
         getNotifications()
@@ -43,9 +49,18 @@ const Notifications = ({ navigation }) => {
                 {notification.map((obj, i) => {
                     return (
                         <View key={i} style={styles.listItem}>
-                            <TouchableOpacity onPress={() => { navigation.navigate('NotificationDetails', {itemId:obj.uId })}}>
+                            <TouchableOpacity onPress={() => { navigation.navigate('NotificationDetails', { itemId: obj.uId }) }}>
                                 <Text style={styles.text}>{obj.title}</Text>
                             </TouchableOpacity>
+                            {
+                                flag ?
+                                    <TouchableOpacity>
+                                        <Text>Delete</Text>
+                                    </TouchableOpacity>
+                                    :
+                                    null
+                            }
+
                         </View>
 
                     )

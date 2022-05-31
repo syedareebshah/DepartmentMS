@@ -29,14 +29,18 @@ import TabNav from './src/Navigation/TabNav';
 import ComplaintDetails from './src/screens/ComplaintDetails';
 import TeachersList from './src/screens/TeachersList';
 import Prac from './src/Prac';
+import { Provider } from 'react-redux'
+import { store } from './src/redux/store';
 
 const App = () => {
   return (
+    <Provider store={store}>
     <PaperProvider>
       <NavigationContainer>
         <StackNav />
       </NavigationContainer>
     </PaperProvider>
+    </Provider>
   );
 };
 

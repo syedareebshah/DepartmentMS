@@ -45,7 +45,31 @@ const AdminHome = ({navigation}) => {
 
                 <View style={styles.innerContainer}>
                     <TouchableOpacity onPress={()=>{navigation.navigate('Complaints')}}>
-                        <Text style={styles.text}>View Complaints</Text>
+                        <Text style={styles.text}>Manage Complaints</Text>
+                    </TouchableOpacity>
+                    <View style={styles.hr}></View>
+                </View>
+                <View style={styles.innerContainer}>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('Notifications')}}>
+                        <Text style={styles.text}>Manage Notifications</Text>
+                    </TouchableOpacity>
+                    <View style={styles.hr}></View>
+                </View>
+                <View style={styles.innerContainer}>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('DateSheet')}}>
+                        <Text style={styles.text}>Manage DateSheet</Text>
+                    </TouchableOpacity>
+                    <View style={styles.hr}></View>
+                </View>
+                <View style={styles.innerContainer}>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('TimeTable')}}>
+                        <Text style={styles.text}>Manage TimeTable</Text>
+                    </TouchableOpacity>
+                    <View style={styles.hr}></View>
+                </View>
+                <View style={styles.innerContainer}>
+                    <TouchableOpacity onPress={()=>{navigation.navigate('Teachers')}}>
+                        <Text style={styles.text}>Manage Teachers</Text>
                     </TouchableOpacity>
                     <View style={styles.hr}></View>
                 </View>

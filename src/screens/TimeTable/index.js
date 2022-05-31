@@ -10,15 +10,19 @@ import {
     useColorScheme,
     Image,
     View,
+    TouchableOpacity
 
 } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useStyles } from './styles';
+import { loginFlag } from '../../redux/loginSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const TimeTable = () => {
     const styles = useStyles()
     const [timeTable, setTimeTable] = useState([])
     console.log(timeTable);
+    const flag = useSelector(payload => payload.login.isLoggedIn)
 
     useEffect(() => {
         getTimeTable()
@@ -63,6 +67,17 @@ const TimeTable = () => {
                                         <Text style={styles.heading}>Teacher</Text>
                                         <Text style={styles.text}>{obj.teacher}</Text>
                                     </View>
+                                    {
+                                        flag ?
+                                        <View>
+                                            <TouchableOpacity>
+                                                <Text>Delete</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                        :
+                                        null
+
+                                    }
                                 </View>
                             )
 

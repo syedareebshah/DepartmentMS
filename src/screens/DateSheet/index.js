@@ -10,15 +10,19 @@ import {
     useColorScheme,
     Image,
     View,
+    TouchableOpacity
 
 } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useStyles } from './styles';
+import { loginFlag } from '../../redux/loginSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const DateSheet = () => {
     const styles = useStyles()
     const [add, setAdd] = useState(false)
     const [datSheet, setDatSheet] = useState([])
+    const flag = useSelector(payload => payload.login.isLoggedIn)
 
     console.log(add, datSheet);
 
@@ -78,6 +82,16 @@ const DateSheet = () => {
                                         <Text style={styles.heading}>Remarks</Text>
                                         <Text style={styles.text}>{obj.remarks}</Text>
                                     </View>
+                                    {flag ?
+                                        <View style={styles.subRow}>
+                                            <TouchableOpacity>
+                                            <Text>Delete</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                        :
+                                        null
+                                    }
+
                                 </View>
                             )
 

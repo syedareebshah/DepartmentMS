@@ -7,6 +7,7 @@ import TimeTable from '../screens/TimeTable';
 import TeacherProfile from '../screens/TeacherProfile';
 import TeachersList from '../screens/TeachersList';
 import Complaint from '../screens/Complaint';
+import AdminHome from '../screens/AdminHome';
 
 
 const Tab = createBottomTabNavigator();

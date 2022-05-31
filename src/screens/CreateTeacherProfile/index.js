@@ -15,6 +15,8 @@ import {
 } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useStyles } from './styles';
+import {useSelector} from 'react-redux'
+import { loginFlag } from '../../redux/loginSlice';
 
 const CreateTeacherProfile = () => {
     const styles = useStyles()
@@ -26,6 +28,8 @@ const CreateTeacherProfile = () => {
             email: ''
         }
     });
+    const adminFlag = useSelector(payload => payload.login.isLoggedIn)
+    console.log(adminFlag,"........");
     const uId = new Date().getTime().toString()
     console.log(uId);
     const onSubmit = ({name, post, qualification,email}) =>

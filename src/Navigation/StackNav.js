@@ -16,6 +16,7 @@ import TeacherProfile from '../screens/TeacherProfile';
 import TabNav from './TabNav';
 import ComplaintDetails from '../screens/ComplaintDetails';
 import SplashScreen from 'react-native-splash-screen'
+import TeachersList from '../screens/TeachersList';
 
 const Stack = createNativeStackNavigator();
 
@@ -197,6 +198,18 @@ function StackNav() {
             />
 
             <Stack.Screen name="ComplaintDetails" component={ComplaintDetails}
+                options={{
+                    headerStyle: {
+                        backgroundColor: 'blue',
+                    },
+                    headerTitle: "Dept. Management System",
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }}
+            />
+            <Stack.Screen name="Teachers" component={TeachersList}
                 options={{
                     headerStyle: {
                         backgroundColor: 'blue',
