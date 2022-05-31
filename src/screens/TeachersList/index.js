@@ -37,9 +37,21 @@ const TeachersList = ({ navigation }) => {
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(documentSnapshot => {
-                    tempArray.push(documentSnapshot.data())
+                    let id = documentSnapshot.ref._documentPath._parts[1]
+                    tempArray.push({ ...documentSnapshot.data(), id: documentSnapshot.ref._documentPath._parts[1] })
+
                 });
                 setTeacher(tempArray)
+            });
+    }
+
+    const delData = ({id}) => {
+        firestore()
+            .collection('TeacherProfiles')
+            .doc(`${id}`)
+            .delete()
+            .then(() => {
+                alert("Deleted")
             });
     }
 
@@ -57,7 +69,7 @@ const TeachersList = ({ navigation }) => {
                                 </TouchableOpacity>
                                 {
                                     flag ?
-                                        <TouchableOpacity>
+                                        <TouchableOpacity onPress={()=>{delData({id:obj.id})}}>
                                             <Text>Delete</Text>
                                         </TouchableOpacity>
                                         :

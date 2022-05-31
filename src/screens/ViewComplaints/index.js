@@ -37,12 +37,24 @@ const ViewComplaints = ({ navigation }) => {
             .then(querySnapshot => {
                 console.log(querySnapshot);
                 querySnapshot.forEach(documentSnapshot => {
-                    console.log(documentSnapshot);
-                    tempArray.push(documentSnapshot.data())
+                    let id = documentSnapshot.ref._documentPath._parts[1]
+                    tempArray.push({ ...documentSnapshot.data(), id: documentSnapshot.ref._documentPath._parts[1] })
+
                 });
                 setComplaints(tempArray)
             });
-       
+
+    }
+
+    const delData = ({ id }) => {
+        firestore()
+            .collection('Complaints')
+            .doc(`${id}`)
+            .delete()
+            .then(() => {
+                alert("Deleted")
+                getComplaints()
+            });
     }
 
 
@@ -51,21 +63,26 @@ const ViewComplaints = ({ navigation }) => {
         <ScrollView>
             <View style={styles.container}>
                 {
-                    complaints.map((obj,i) => {
+                    complaints.map((obj, i) => {
                         return (
-                            <View>
-                            <TouchableOpacity key={i} onPress={() => { navigation.navigate('ComplaintDetails',{itemId:obj.uId}) }}>
-                                <View style={styles.listItem}>
-                                    <Text style={styles.text}>{obj.title}</Text>
-                                </View>
-                            </TouchableOpacity>
-                            {flag ?
-                            <View>
-                                <Text>Delete</Text>
-                            </View> 
-                            :
-                            null   
-                        }
+                            <View key={i}>
+                                <TouchableOpacity key={i} onPress={() => { navigation.navigate('ComplaintDetails', { itemId: obj.uId }) }}>
+                                    <View style={styles.listItem}>
+                                        <Text style={styles.text}>{obj.title}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                                {flag ?
+                                    <View>
+                                        <TouchableOpacity onPress={() => {
+                                        delData({ id: obj.id }
+                                        )
+                                    }}>
+                                            <Text style={{ textAlign: 'center' }}>Delete</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    :
+                                    null
+                                }
                             </View>
                         )
                     })

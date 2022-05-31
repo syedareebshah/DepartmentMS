@@ -183,6 +183,7 @@ const PostDateSheet = () => {
                 </Button>
 
                 <View style={styles.table}>
+                    <Text style={{textAlign:'center', color:'blue',fontWeight:'bold'}}>Mock View for Admin</Text>
                     <View style={styles.row}>
                         <View style={styles.subRow}>
                             <Text style={styles.heading}>Date</Text>

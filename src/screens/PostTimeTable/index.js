@@ -160,6 +160,7 @@ const PostTimeTable = () => {
                 </Button>
 
                 <View style={styles.table}>
+                    <Text style={styles.day}>Mock View for Admin</Text>
                     <Text style={styles.day}>Monday</Text>
                     <View style={styles.row}>
                         <View style={styles.subRow}>

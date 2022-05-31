@@ -37,11 +37,25 @@ const Notifications = ({ navigation }) => {
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(documentSnapshot => {
-                    tempArray.push(documentSnapshot.data())
+                    let id = documentSnapshot.ref._documentPath._parts[1]
+                    tempArray.push({ ...documentSnapshot.data(), id: documentSnapshot.ref._documentPath._parts[1] })
+
                 });
                 setNotifications(tempArray)
             });
     }
+
+    const delData = ({ id }) => {
+        firestore()
+            .collection('Notifications')
+            .doc(`${id}`)
+            .delete()
+            .then(() => {
+                alert("Deleted")
+                getNotifications()
+            });
+    }
+
 
     return (
         <ScrollView>
@@ -54,8 +68,11 @@ const Notifications = ({ navigation }) => {
                             </TouchableOpacity>
                             {
                                 flag ?
-                                    <TouchableOpacity>
-                                        <Text>Delete</Text>
+                                    <TouchableOpacity onPress={() => {
+                                        delData({ id: obj.id }
+                                        )
+                                    }}>
+                                        <Text style={{ textAlign: 'center' }}>Delete</Text>
                                     </TouchableOpacity>
                                     :
                                     null

@@ -35,9 +35,22 @@ const TimeTable = () => {
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(documentSnapshot => {
-                    tempArray.push(documentSnapshot.data())
+                    let id = documentSnapshot.ref._documentPath._parts[1]
+                    tempArray.push({ ...documentSnapshot.data(), id: documentSnapshot.ref._documentPath._parts[1] })
+
                 });
                 setTimeTable(tempArray)
+            });
+    }
+
+    const delData = ({id}) => {
+        firestore()
+            .collection('TimeTable')
+            .doc(`${id}`)
+            .delete()
+            .then(() => {
+                getTimeTable()
+                alert("Deleted")
             });
     }
 
@@ -70,8 +83,10 @@ const TimeTable = () => {
                                     {
                                         flag ?
                                         <View>
-                                            <TouchableOpacity>
-                                                <Text>Delete</Text>
+                                            <TouchableOpacity onPress={()=>{
+                                                delData({id:obj.id}  
+                                                )}}>
+                                                <Text style={{textAlign:'center'}}>Delete</Text>
                                             </TouchableOpacity>
                                         </View>
                                         :

@@ -37,11 +37,24 @@ const DateSheet = () => {
             .get()
             .then(querySnapshot => {
                 querySnapshot.forEach(documentSnapshot => {
-                    tempArray.push(documentSnapshot.data())
+                    let id = documentSnapshot.ref._documentPath._parts[1]
+                    tempArray.push({ ...documentSnapshot.data(), id: documentSnapshot.ref._documentPath._parts[1] })
                 });
                 setDatSheet(tempArray)
             });
     }
+
+    const delData = ({ id }) => {
+        firestore()
+            .collection('DateSheet')
+            .doc(`${id}`)
+            .delete()
+            .then(() => {
+                getDateSheet()
+                alert("Deleted")
+            });
+    }
+
 
 
     return (
@@ -51,6 +64,7 @@ const DateSheet = () => {
                 <View style={styles.table}>
                     {
                         datSheet.map((obj, i) => {
+                            console.log(obj.id);
                             return (
                                 <View key={i} style={styles.row}>
                                     <View style={styles.subRow}>
@@ -83,9 +97,9 @@ const DateSheet = () => {
                                         <Text style={styles.text}>{obj.remarks}</Text>
                                     </View>
                                     {flag ?
-                                        <View style={styles.subRow}>
-                                            <TouchableOpacity>
-                                            <Text>Delete</Text>
+                                        <View>
+                                            <TouchableOpacity onPress={() => { delData({ id: obj.id }) }}>
+                                                <Text style={{ textAlign: 'center' }}>Delete</Text>
                                             </TouchableOpacity>
                                         </View>
                                         :
